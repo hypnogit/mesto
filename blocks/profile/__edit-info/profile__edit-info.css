@@ -1,0 +1,16 @@
+.profile__edit-info {
+  width: 24px;
+  height: 24px;
+  border: 1px solid #FFFFFF;
+  background-color: #000000;
+  background-image: url('../../../images/pencil.svg');
+  background-size: 10px 10px;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.profile__edit-info:hover {
+  opacity: 0.6;
+}

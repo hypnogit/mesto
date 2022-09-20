@@ -1,0 +1,6 @@
+.element__details {
+  display: flex;
+  height: calc(100% - 282px);
+  justify-content: space-between;
+  align-items: center;
+}

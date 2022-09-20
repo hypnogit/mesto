@@ -1,0 +1,21 @@
+.popup__input-job {
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+  margin: 0 0 48px 0;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  width: 358px;
+  height: 27px;
+}
+
+@media screen and (max-width: 550px) {
+  .popup__input-job {
+    margin-bottom: 45px;
+    width: 238px;
+  }
+}
