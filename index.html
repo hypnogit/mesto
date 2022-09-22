@@ -18,78 +18,78 @@
         <img src="./images/avatar.png" alt="Аватар" class="profile__avatar">
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <button class="profile__edit-info"></button>
+          <button aria-label="Кнопка редактирования информации профиля" type="button" class="profile__edit-info"></button>
           <p class="profile__job">Исследователь рек</p>
         </div>
-        <button class="profile__add-element"></button>
+        <button aria-label="Кнопка добавления новой карточки" type="button" class="profile__add-element"></button>
       </section>
 
       <section class="elements">
         <div class="element">
           <img src="./images/earnslaw.jpg" alt="Орнслоу" class="element__image">
           <div class="element__details">
-            <p class="element__name">Орнслоу</p>
-            <button class="element__like"></button>
+            <h2 class="element__name">Орнслоу</h2>
+            <button aria-label="Кнопка лайка карточки" type="button" class="element__like"></button>
           </div>
         </div>
 
         <div class="element">
           <img src="./images/hoffell.jpg" alt="Хоффелл" class="element__image">
           <div class="element__details">
-            <p class="element__name">Хоффелл</p>
-            <button class="element__like"></button>
+            <h2 class="element__name">Хоффелл</h2>
+            <button aria-label="Кнопка лайка карточки" type="button" class="element__like"></button>
           </div>
         </div>
 
         <div class="element">
           <img src="./images/moab.jpg" alt="Моаб" class="element__image">
           <div class="element__details">
-            <p class="element__name">Моаб</p>
-            <button class="element__like"></button>
+            <h2 class="element__name">Моаб</h2>
+            <button aria-label="Кнопка лайка карточки" type="button" class="element__like"></button>
           </div>
         </div>
 
         <div class="element">
           <img src="./images/queenstown.jpg" alt="Квинстаун" class="element__image">
           <div class="element__details">
-            <p class="element__name">Квинстаун</p>
-            <button class="element__like"></button>
+            <h2 class="element__name">Квинстаун</h2>
+            <button aria-label="Кнопка лайка карточки" type="button" class="element__like"></button>
           </div>
         </div>
 
         <div class="element">
           <img src="./images/reykholt.jpg" alt="Рейкхолт" class="element__image">
           <div class="element__details">
-            <p class="element__name">Рейкхолт</p>
-            <button class="element__like"></button>
+            <h2 class="element__name">Рейкхолт</h2>
+            <button aria-label="Кнопка лайка карточки" type="button" class="element__like"></button>
           </div>
         </div>
 
         <div class="element">
           <img src="./images/silverthorne.jpg" alt="Силверторн" class="element__image">
           <div class="element__details">
-            <p class="element__name">Силверторн</p>
-            <button class="element__like"></button>
+            <h2 class="element__name">Силверторн</h2>
+            <button aria-label="Кнопка лайка карточки" type="button" class="element__like"></button>
           </div>
         </div>
       </section>
     </main>
 
-    <section class="popup">
-        <div class="popup__container">
-          <button class="popup__close"></button>
-          <div class="popup__content">
-            <h2 class="popup__title">Редактировать профиль</h2>
-            <input type="text" class="popup__input-name">
-            <input type="text" class="popup__input-job">
-            <button class="popup__submit">Сохранить</button>
-          </div>
-        </div>
-    </section>
-
     <footer class="footer">
       <p class="footer__text">&copy; 2022 Mesto Russia</p>
     </footer>
+
+    <div class="popup">
+      <div class="popup__container">
+        <button aria-label="Кнопка закрытия попапа" type="button" class="popup__close"></button>
+        <form name="popup__content" class="popup__content">
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <input required placeholder="Имя" name="popup__input_name" type="text" class="popup__input popup__input_name">
+          <input required placeholder="Профессия" name="popup__input_job" type="text" class="popup__input popup__input_job">
+          <button type="submit" class="popup__submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
   </div>
   <script src="./scripts/index.js"></script>
 </body>
