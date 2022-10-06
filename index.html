@@ -25,53 +25,7 @@
       </section>
 
       <section class="elements">
-        <div class="element">
-          <img src="./images/earnslaw.jpg" alt="Орнслоу" class="element__image">
-          <div class="element__details">
-            <h2 class="element__name">Орнслоу</h2>
-            <button aria-label="Кнопка лайка карточки" type="button" class="element__like"></button>
-          </div>
-        </div>
 
-        <div class="element">
-          <img src="./images/hoffell.jpg" alt="Хоффелл" class="element__image">
-          <div class="element__details">
-            <h2 class="element__name">Хоффелл</h2>
-            <button aria-label="Кнопка лайка карточки" type="button" class="element__like"></button>
-          </div>
-        </div>
-
-        <div class="element">
-          <img src="./images/moab.jpg" alt="Моаб" class="element__image">
-          <div class="element__details">
-            <h2 class="element__name">Моаб</h2>
-            <button aria-label="Кнопка лайка карточки" type="button" class="element__like"></button>
-          </div>
-        </div>
-
-        <div class="element">
-          <img src="./images/queenstown.jpg" alt="Квинстаун" class="element__image">
-          <div class="element__details">
-            <h2 class="element__name">Квинстаун</h2>
-            <button aria-label="Кнопка лайка карточки" type="button" class="element__like"></button>
-          </div>
-        </div>
-
-        <div class="element">
-          <img src="./images/reykholt.jpg" alt="Рейкхолт" class="element__image">
-          <div class="element__details">
-            <h2 class="element__name">Рейкхолт</h2>
-            <button aria-label="Кнопка лайка карточки" type="button" class="element__like"></button>
-          </div>
-        </div>
-
-        <div class="element">
-          <img src="./images/silverthorne.jpg" alt="Силверторн" class="element__image">
-          <div class="element__details">
-            <h2 class="element__name">Силверторн</h2>
-            <button aria-label="Кнопка лайка карточки" type="button" class="element__like"></button>
-          </div>
-        </div>
       </section>
     </main>
 
@@ -79,17 +33,48 @@
       <p class="footer__text">&copy; 2022 Mesto Russia</p>
     </footer>
 
-    <div class="popup">
-      <div class="popup__container">
-        <button aria-label="Кнопка закрытия попапа" type="button" class="popup__close"></button>
-        <form name="popup__content" class="popup__content">
-          <h2 class="popup__title">Редактировать профиль</h2>
-          <input required placeholder="Имя" name="popup__input_name" type="text" class="popup__input popup__input_type_name">
-          <input required placeholder="Профессия" name="popup__input_job" type="text" class="popup__input popup__input_type_job">
-          <button type="submit" class="popup__submit">Сохранить</button>
+    <div class="profile-popup">
+      <div class="profile-popup__container">
+        <button aria-label="Кнопка закрытия попапа" type="button" class="profile-popup__close"></button>
+        <form name="profile-popup__content" class="profile-popup__content">
+          <h2 class="profile-popup__title">Редактировать профиль</h2>
+          <input required placeholder="Имя" name="profile-popup__input_name" type="text" class="profile-popup__input profile-popup__input_type_name">
+          <input required placeholder="Профессия" name="profile-popup__input_job" type="text" class="profile-popup__input profile-popup__input_type_job">
+          <button type="submit" class="profile-popup__submit">Сохранить</button>
         </form>
       </div>
     </div>
+
+    <div class="add-mesto-popup">
+      <div class="add-mesto-popup__container">
+        <button aria-label="Кнопка закрытия попапа" type="button" class="add-mesto-popup__close"></button>
+        <form name="add-mesto-popup__content" class="add-mesto-popup__content">
+          <h2 class="add-mesto-popup__title">Новое место</h2>
+          <input required placeholder="Название" name="add-mesto-popup__input_mesto" type="text" class="add-mesto-popup__input add-mesto-popup__input_type_mesto">
+          <input required placeholder="Ссылка на картинку" name="add-mesto-popup__input_image" type="text" class="add-mesto-popup__input add-mesto-popup__input_type_image">
+          <button type="submit" class="add-mesto-popup__submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="view-mesto-popup">
+      <div class="view-mesto-popup__container">
+        <button aria-label="Кнопка закрытия просмотра" type="button" class="view-mesto-popup__close"></button>
+        <img src="" alt="" class="view-mesto-popup__image">
+        <div class="view-mesto-popup__name"></div>
+      </div>
+    </div>
+
+    <template class="template">
+      <div class="element">
+        <img src="" alt="" class="element__image">
+        <button aria-label="Кнопка удаления карточки" type="button" class="element__remove"></button>
+        <div class="element__details">
+          <h2 class="element__name"></h2>
+          <button aria-label="Кнопка лайка карточки" type="button" class="element__like"></button>
+        </div>
+      </div>
+    </template>
   </div>
   <script src="./scripts/index.js"></script>
 </body>

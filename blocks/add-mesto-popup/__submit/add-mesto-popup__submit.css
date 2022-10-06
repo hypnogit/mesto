@@ -1,4 +1,4 @@
-.popup__submit {
+.add-mesto-popup__submit {
   font-family: 'Inter', Arial, sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -16,12 +16,12 @@
   margin-top: 18px;
 }
 
-.popup__submit:hover {
+.add-mesto-popup__submit:hover {
   opacity: 0.8;
 }
 
 @media screen and (max-width: 550px) {
-  .popup__submit {
+  .add-mesto-popup__submit {
     width: 238px;
     height: 46px;
     font-size: 14px;

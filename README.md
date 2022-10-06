@@ -1,6 +1,6 @@
-# Четвёртая проектная работа по теме "Базовый javaScript и работа с браузером"
+# Пятая проектная работа по теме "Базовый javaScript и работа с браузером"
 
-Проект призван помочь студенту закрепить навыки, пройденные в четвёртом спринте курса "Веб-разработчик".
+Проект призван помочь студенту закрепить навыки, пройденные в пятом спринте курса "Веб-разработчик".
 
 В проекте используются различные HTML, CSS и JS технологии, такие как:
 - Figma layout;
@@ -9,9 +9,11 @@
 - Media queries;
 - Local fonts;
 - Nested BEM;
-- DOM manipulating;
+- DOM manipulation;
 - Events;
 - Functions;
+- Templates;
+- Array manipulation;
 - и другие.
 
 Ссылка на GitHub Pages проекта - [https://hypnogit.github.io/mesto/index.html](https://hypnogit.github.io/mesto/index.html)

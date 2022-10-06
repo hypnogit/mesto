@@ -1,4 +1,4 @@
-.popup__container {
+.profile-popup__container {
   position: relative;
   max-width: 430px;
   background: #FFFFFF;
@@ -9,7 +9,7 @@
 }
 
 @media screen and (max-width: 550px) {
-  .popup__container {
+  .profile-popup__container {
     max-width: 282px;
     padding: 25px 22px;
   }

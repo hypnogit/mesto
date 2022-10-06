@@ -1,4 +1,4 @@
-.popup__input {
+.profile-popup__input {
   font-family: 'Inter', Arial, sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -14,11 +14,11 @@
 }
 
 @media screen and (max-width: 550px) {
-  .popup__input {
+  .profile-popup__input {
     width: 238px;
   }
 
-  .popup__input:nth-of-type(2) {
+  .profile-popup__input:nth-of-type(2) {
     margin-bottom: 27px;
   }
 }

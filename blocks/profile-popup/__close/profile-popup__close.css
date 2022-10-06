@@ -1,4 +1,4 @@
-.popup__close {
+.profile-popup__close {
   position: absolute;
   top: -40px;
   right: -40px;
@@ -14,12 +14,12 @@
   transition: opacity 0.3s ease-in-out;
 }
 
-.popup__close:hover {
+.profile-popup__close:hover {
   opacity: 0.6;
 }
 
 @media screen and (max-width: 550px) {
-  .popup__close {
+  .profile-popup__close {
     top: -36px;
     right: 0;
     width: 20px;
