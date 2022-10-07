@@ -26,17 +26,16 @@
 @import url(../blocks/profile-popup/__title/profile-popup__title.css);
 @import url(../blocks/profile-popup/__input/profile-popup__input.css);
 @import url(../blocks/profile-popup/__submit/profile-popup__submit.css);
-@import url(../blocks/profile-popup/_opened/profile-popup_opened.css);
 @import url(../blocks/add-mesto-popup/add-mesto-popup.css);
 @import url(../blocks/add-mesto-popup/__container/add-mesto-popup__container.css);
 @import url(../blocks/add-mesto-popup/__close/add-mesto-popup__close.css);
 @import url(../blocks/add-mesto-popup/__title/add-mesto-popup__title.css);
 @import url(../blocks/add-mesto-popup/__input/add-mesto-popup__input.css);
 @import url(../blocks/add-mesto-popup/__submit/add-mesto-popup__submit.css);
-@import url(../blocks/add-mesto-popup/_opened/add-mesto-popup_opened.css);
 @import url(../blocks/view-mesto-popup/view-mesto-popup.css);
 @import url(../blocks/view-mesto-popup/__close/view-mesto-popup__close.css);
 @import url(../blocks/view-mesto-popup/__container/view-mesto-popup__container.css);
 @import url(../blocks/view-mesto-popup/__image/view-mesto-popup__image.css);
 @import url(../blocks/view-mesto-popup/__name/view-mesto-popup__name.css);
-@import url(../blocks/view-mesto-popup/_opened/view-mesto-popup_opened.css);
+@import url(../blocks/popup/_opened/popup_opened.css);
+

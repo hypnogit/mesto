@@ -3,16 +3,14 @@
   grid-template-columns: 1fr auto;
   column-gap: 18px;
   row-gap: 16px;
-  max-width: 336px;
+  max-width: 340px;
 }
 
 @media screen and (max-width: 690px) {
   .profile__info {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    text-align: center;
     column-gap: 10px;
     row-gap: 14px;
-    min-width: 215px;
+    max-width: 290px;
   }
 }
