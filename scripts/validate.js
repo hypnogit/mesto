@@ -4,8 +4,7 @@ const conf = {
   inputSelector: '.form__input',
   submitButtonSelector: '.submit',
   inactiveButtonClass: 'popup__button-invalid',
-  inputErrorClass: 'popup__type-error',
-  errorClass: 'active'
+  inputErrorClass: 'popup__type-error'
 }
 
 // Добавляем класс с ошибкой
@@ -13,14 +12,12 @@ const showInputError = (formElement, inputElement, errorMessage, conf) => {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`)
   inputElement.classList.add(conf.inputErrorClass);
   errorElement.textContent = errorMessage;
-  errorElement.classList.add(conf.errorClass);
 };
 
 // Удаляем класс с ошибкой
 const hideInputError = (formElement, inputElement, conf) => {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   inputElement.classList.remove(conf.inputErrorClass);
-  errorElement.classList.remove(conf.errorClass);
   errorElement.textContent = '';
 };
 
@@ -36,7 +33,7 @@ const isValid = (formElement, inputElement, conf) => {
 // Вешаем лисенеры на инпуты
 const setEventListeners = (formElement, conf) => {
   const inputList = Array.from(formElement.querySelectorAll(conf.inputSelector));
-  const buttonElement = formElement.querySelector(conf.submitButtonSelector)
+  const buttonElement = formElement.querySelector(conf.submitButtonSelector);;
   toggleButtonState(inputList, buttonElement, conf);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
@@ -72,5 +69,12 @@ const enableValidation = (conf) => {
     setEventListeners(formElement, conf);
   });
 };
+
+// Включаем кнопку сабмита попапа профиля
+const enableProfilePopupSubmitButton = () => {
+  const button = document.querySelector('.profile-popup__submit');
+  button.classList.remove('popup__button-invalid');
+  button.removeAttribute('disabled');
+}
 
 enableValidation(conf);
