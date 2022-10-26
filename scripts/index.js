@@ -18,6 +18,11 @@ const cardAddName = document.querySelector('.add-mesto-popup__input_type_mesto')
 const cardAddLink = document.querySelector('.add-mesto-popup__input_type_image');
 const cardViewPopup = document.querySelector('.view-mesto-popup');
 const cardViewClosePopup = document.querySelector('.view-mesto-popup__close');
+const cardAddPopupContainer = document.querySelector('.add-mesto-popup__container');
+const cardAddSubmitButton = document.querySelector('.add-mesto-popup__submit');
+const profilePopupSubmitButton = document.querySelector('.profile-popup__submit');
+const profilePopupNameError = document.querySelector('#name-error');
+const profilePopupJobError = document.querySelector('#job-error');
 
 // Открываем попапы
 function openPopup(popup) {
@@ -57,6 +62,13 @@ function createCard(cardName, cardImage) {
     cardImageView.setAttribute('src', cardImageDom.getAttribute('src'));
     cardImageView.setAttribute('alt', cardImageDom.getAttribute('alt'));
     cardNameView.textContent = cardImageDom.getAttribute('alt');
+    window.addEventListener('keydown', closeCardViewPopupByEscape);
+    cardViewPopup.addEventListener('click', (evt) => {
+      if (evt.target === cardViewPopup) {
+        closePopup(cardViewPopup);
+        window.removeEventListener('keydown', closeCardViewPopupByEscape);
+      }
+    })
   });
 
   return card;
@@ -73,49 +85,94 @@ function fillProfileInfoForm() {
   profilePopupJob.value = profileJob.textContent;
 }
 
+function closeCardViewPopupByEscape(evt) {
+  if (evt.key === 'Escape') {
+    closePopup(cardViewPopup);
+  }
+}
+
+function closeCardAddPopupByEscape(evt) {
+  if (evt.key === 'Escape') {
+    closePopup(cardAddPopup);
+  }
+}
+
+function closeProfilePopupByEscape(evt) {
+  if (evt.key === 'Escape') {
+    closePopup(profilePopup);
+  }
+}
+
 // Рендерим начальные карточки
 initialCards.forEach((item => {
   renderCard(createCard(item.name, item.link))
 }));
 
-// Открываем попап профиля и предзаполняем форму
+// Открываем попап профиля, предзаполняем форму, сбрасываем валидации и закрываем попап профиля
 buttonEditProfile.addEventListener('click', () => {
   openPopup(profilePopup);
+  profilePopupSubmitButton.classList.remove('popup__button-invalid');
+  profilePopupSubmitButton.removeAttribute('disabled');
+  profilePopupNameError.classList.remove('active');
+  profilePopupJobError.classList.remove('active');
+  profilePopupName.classList.remove('popup__type-error');
+  profilePopupJob.classList.remove('popup__type-error');
   fillProfileInfoForm();
+  window.addEventListener('keydown', closeProfilePopupByEscape);
+  profilePopup.addEventListener('click', (evt) => {
+    if (evt.target === profilePopup) {
+      closePopup(profilePopup);
+      window.removeEventListener('keydown', closeProfilePopupByEscape);
+    }
+  })
 });
 
-// Закрываем попап профиля
+// Закрываем попап профиля и снимаем лисенер
 profileClosePopup.addEventListener('click', () => {
   closePopup(profilePopup);
+  window.removeEventListener('keydown', closeProfilePopupByEscape);
 });
 
-// Сабмитим форму профиля и закрываем попап
+// Сабмитим форму профиля, закрываем попап и снимаем лисенер
 profileForm.addEventListener('submit', function (e) {
   e.preventDefault();
   profileJob.textContent = profilePopupJob.value;
   profileName.textContent = profilePopupName.value;
   closePopup(profilePopup);
+  window.removeEventListener('keydown', closeProfilePopupByEscape);
 });
 
-// Открываем попап создания новой карточки
+// Открываем попап создания новой карточки и сбрасываем валидации
 cardAddButton.addEventListener('click', () => {
   openPopup(cardAddPopup);
+  cardAddSubmitButton.classList.add('popup__button-invalid');
+  cardAddSubmitButton.setAttribute('disabled', true);
+  window.addEventListener('keydown', closeCardAddPopupByEscape);
+  cardAddPopup.addEventListener('click', (evt) => {
+    if (evt.target === cardAddPopup) {
+      closePopup(cardAddPopup);
+      window.removeEventListener('keydown', closeCardAddPopupByEscape);
+    }
+  })
 });
 
-// Закрываем попап создания новой карточки
+// Закрываем попап создания новой карточки и убираем лисенер
 cardAddClosePopup.addEventListener('click', () => {
   closePopup(cardAddPopup);
+  window.removeEventListener('keydown', closeCardAddPopupByEscape);
 });
 
-// Сабмитим форму создания новой карточки и закрываем попап
+// Сабмитим форму создания новой карточки, закрываем попап и убираем лисенер
 cardAddForm.addEventListener('submit', function (e) {
   e.preventDefault();
   renderCard(createCard(cardAddName.value, cardAddLink.value))
   cardAddForm.reset();
   closePopup(cardAddPopup);
+  window.removeEventListener('keydown', closeCardAddPopupByEscape);
 });
 
-// Закрываем попап просмотра карточки
+// Закрываем попап просмотра карточки и убираем лисенер
 cardViewClosePopup.addEventListener('click', () => {
   closePopup(cardViewPopup);
+  window.removeEventListener('keydown', closeCardViewPopupByEscape);
 });
