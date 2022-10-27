@@ -119,7 +119,6 @@ buttonEditProfile.addEventListener('click', () => {
   clearFalseValidationError(profilePopup, conf);
   openPopup(profilePopup);
   fillProfileInfoForm();
-  enableProfilePopupSubmitButton();
 });
 
 // Закрываем попап профиля
@@ -138,6 +137,8 @@ profileForm.addEventListener('submit', function (e) {
 // Открываем попап создания новой карточки и очищаем зависшие ошибки валидации
 cardAddButton.addEventListener('click', () => {
   clearFalseValidationError(cardAddPopup, conf);
+  cardAddSubmitButton.classList.add('popup__button-invalid');
+  cardAddSubmitButton.setAttribute('disabled', true);
   openPopup(cardAddPopup);
 });
 

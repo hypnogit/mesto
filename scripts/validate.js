@@ -70,11 +70,4 @@ const enableValidation = (conf) => {
   });
 };
 
-// Включаем кнопку сабмита попапа профиля
-const enableProfilePopupSubmitButton = () => {
-  const button = document.querySelector('.profile-popup__submit');
-  button.classList.remove('popup__button-invalid');
-  button.removeAttribute('disabled');
-}
-
 enableValidation(conf);
