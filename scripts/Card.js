@@ -8,13 +8,14 @@ class Card {
 
   generateCard() {
     this._getTemplate();
+    this._cardImage = this._card.querySelector('.element__image');
     this._handleCardDeletion();
     this._handleLikeButton();
     this._handleViewingPopup();
-    this._card.querySelector('.element__image').setAttribute('src', this._image);
-    this._card.querySelector('.element__image').setAttribute('alt', this._name);
+    this._cardImage.setAttribute('src', this._image);
+    this._cardImage.setAttribute('alt', this._name);
     this._card.querySelector('.element__name').textContent = this._name;
-    this._viewImage = this._card.querySelector('.element__image').src;
+    this._viewImage = this._cardImage.src;
     this._viewName = this._card.querySelector('.element__name').textContent;
     return this._card;
   }
@@ -38,7 +39,7 @@ class Card {
   }
 
   _handleViewingPopup() {
-    this._card.querySelector('.element__image').addEventListener('click', () => {
+    this._cardImage.addEventListener('click', () => {
       this._openCardFullScreen(this._viewName, this._viewImage);
     })
   }

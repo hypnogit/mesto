@@ -10,6 +10,15 @@ class FormValidator {
     this._setEventListeners(this._currentForm);
   };
 
+  // Хендлим зависшие валидации и состояние кнопки
+  resetValidation() {
+    this._toggleButtonState(this._inputList, this._buttonElement);
+
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(this._currentForm, inputElement);
+    });
+  };
+
    // Вешаем лисенеры на инпуты
   _setEventListeners(formElement) {
     this._inputList = Array.from(formElement.querySelectorAll(this._conf.inputSelector));

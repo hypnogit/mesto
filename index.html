@@ -33,9 +33,9 @@
       <p class="footer__text">&copy; 2022 Mesto Russia</p>
     </footer>
 
-    <div class="profile-popup">
+    <div class="profile-popup popup">
       <div class="profile-popup__container">
-        <button aria-label="Кнопка закрытия попапа" type="button" class="profile-popup__close"></button>
+        <button aria-label="Кнопка закрытия попапа" type="button" class="profile-popup__close popup__close"></button>
         <form name="profile-popup__content" class="profile-popup__content form" novalidate>
           <h2 class="profile-popup__title">Редактировать профиль</h2>
           <input required id="name" placeholder="Имя" name="profile-popup__input_name" type="text" class="profile-popup__input profile-popup__input_type_name form__input" minlength="2" maxlength="40">
@@ -47,9 +47,9 @@
       </div>
     </div>
 
-    <div class="add-mesto-popup">
+    <div class="add-mesto-popup popup">
       <div class="add-mesto-popup__container">
-        <button aria-label="Кнопка закрытия попапа" type="button" class="add-mesto-popup__close"></button>
+        <button aria-label="Кнопка закрытия попапа" type="button" class="add-mesto-popup__close popup__close"></button>
         <form name="add-mesto-popup__content" class="add-mesto-popup__content form" novalidate>
           <h2 class="add-mesto-popup__title">Новое место</h2>
           <input required id="card-name" placeholder="Название" name="add-mesto-popup__input_mesto" type="text" class="add-mesto-popup__input add-mesto-popup__input_type_mesto form__input" minlength="2" maxlength="30">
@@ -61,9 +61,9 @@
       </div>
     </div>
 
-    <div class="view-mesto-popup">
+    <div class="view-mesto-popup popup">
       <div class="view-mesto-popup__container">
-        <button aria-label="Кнопка закрытия просмотра" type="button" class="view-mesto-popup__close"></button>
+        <button aria-label="Кнопка закрытия просмотра" type="button" class="view-mesto-popup__close popup__close"></button>
         <img src="./images/avatar.png" alt="" class="view-mesto-popup__image">
         <div class="view-mesto-popup__name"></div>
       </div>
