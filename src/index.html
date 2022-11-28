@@ -4,18 +4,17 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto</title>
 </head>
 <body>
   <div class="page">
     <header class="header">
-      <img src="./images/logo.svg" alt="Логотип" class="header__logo">
+      <img src="<%=require('./images/logo.svg')%>" alt="Логотип" class="header__logo">
     </header>
 
     <main class="content">
       <section class="profile">
-        <img src="./images/avatar.png" alt="Аватар" class="profile__avatar">
+        <img src="<%=require('./images/avatar.png')%>" alt="Аватар" class="profile__avatar">
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <button aria-label="Кнопка редактирования информации профиля" type="button" class="profile__edit-info"></button>
@@ -64,14 +63,14 @@
     <div class="view-mesto-popup popup">
       <div class="view-mesto-popup__container">
         <button aria-label="Кнопка закрытия просмотра" type="button" class="view-mesto-popup__close popup__close"></button>
-        <img src="./images/avatar.png" alt="" class="view-mesto-popup__image">
+        <img src="<%=require('./images/avatar.png')%>" alt="" class="view-mesto-popup__image">
         <div class="view-mesto-popup__name"></div>
       </div>
     </div>
 
     <template class="template">
       <div class="element">
-        <img src="./images/avatar.png" alt="" class="element__image">
+        <img src="<%=require('./images/avatar.png')%>" alt="" class="element__image">
         <button aria-label="Кнопка удаления карточки" type="button" class="element__remove"></button>
         <div class="element__details">
           <h2 class="element__name"></h2>
@@ -80,10 +79,5 @@
       </div>
     </template>
   </div>
-  <script type="module" src="./scripts/Card.js"></script>
-  <script type="module" src="./scripts/conf.js"></script>
-  <script type="module" src="./scripts/FormValidator.js"></script>
-  <script type="module" src='./scripts/initialCards.js'></script>
-  <script type="module" src="./scripts/index.js"></script>
 </body>
 </html>
