@@ -1,22 +1,20 @@
 class Card {
-  constructor(name, image, template, openCardFullScreen) {
+  constructor({ name, link }, template, handleImageClick) {
     this._name = name;
-    this._image = image;
+    this._image = link;
     this._template = template;
-    this._openCardFullScreen = openCardFullScreen;
+    this._handleImageClick = handleImageClick;
   }
 
   generateCard() {
     this._getTemplate();
     this._cardImage = this._card.querySelector('.element__image');
-    this._handleCardDeletion();
-    this._handleLikeButton();
-    this._handleViewingPopup();
+    this._bindDeleteHandler();
+    this._bindLikeHandler();
+    this._bindImageClickHandler();
     this._cardImage.setAttribute('src', this._image);
     this._cardImage.setAttribute('alt', this._name);
     this._card.querySelector('.element__name').textContent = this._name;
-    this._viewImage = this._cardImage.src;
-    this._viewName = this._card.querySelector('.element__name').textContent;
     return this._card;
   }
 
@@ -24,23 +22,23 @@ class Card {
     this._card = document.querySelector(this._template).content.cloneNode(true);
   }
 
-  _handleCardDeletion() {
+  _bindDeleteHandler() {
     this._cardDeleteButton = this._card.querySelector('.element__remove');
     this._cardDeleteButton.addEventListener('click', () => {
       this._cardDeleteButton.closest('.element').remove();
     });
   }
 
-  _handleLikeButton() {
+  _bindLikeHandler() {
     this._cardLikeButton = this._card.querySelector('.element__like');
     this._cardLikeButton.addEventListener('click', () => {
       this._cardLikeButton.classList.toggle('element__like_active');
     });
   }
 
-  _handleViewingPopup() {
+  _bindImageClickHandler() {
     this._cardImage.addEventListener('click', () => {
-      this._openCardFullScreen(this._viewName, this._viewImage);
+      this._handleImageClick(this._name, this._image);
     })
   }
 }

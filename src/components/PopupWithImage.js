@@ -1,20 +1,17 @@
 import { Popup } from "./Popup.js";
 
 class PopupWithImage extends Popup {
-  constructor(popupSelector, link, name) {
+  constructor(popupSelector) {
     super(popupSelector);
-    this._popup = document.querySelector(popupSelector);
-    this._link = link;
-    this._name = name;
-  }
-
-  open() {
-    super.open();
     this._cardImageView = document.querySelector('.view-mesto-popup__image');
     this._cardNameView = document.querySelector('.view-mesto-popup__name');
-    this._cardImageView.setAttribute('src', this._link);
-    this._cardImageView.setAttribute('alt', this._name);
-    this._cardNameView.textContent = this._name;
+  }
+
+  open(name, link) {
+    super.open();
+    this._cardImageView.setAttribute('src', link);
+    this._cardImageView.setAttribute('alt', name);
+    this._cardNameView.textContent = name;
   }
 }
 
