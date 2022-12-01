@@ -11,29 +11,55 @@ import { buttonEditProfile, profilePopupName, profilePopupJob, cardAddButton, ca
 
 import './index.css';
 
+// Прокидываем хендлинг попапа просмотра карточки в класс создания карточки
+const openCardFullScreen = (name, link) => {
+  popupZoomCard.open(name, link);
+}
+
+// Создаем новую карточку
+const createCard = (cardData) => {
+  const cardElement = new Card(cardData, '.template', openCardFullScreen);
+  const card = cardElement.generateCard();
+  return card;
+}
+
+// Рендерим начальные карточки
+const cardsSection = new Section({
+  items: initialCards,
+  renderer: (cardData) => {
+    cardsSection.addItem(createCard(cardData));
+  }
+}, '.elements')
+cardsSection.renderFinal();
+
+// Создаем инстанс валидатора попапа профиля
 const profilePopupFormValidator = new FormValidator(validationConfig, '.profile-popup__content');
+
+// Создаем инстанс валидатора попапа создания новой карточки
 const cardFormValidator = new FormValidator(validationConfig, '.add-mesto-popup__content');
+
+// Создаем инстанс хендлера инфы о пользователе
 const userInfo = new UserInfo({
   nameSelector: '.profile__name',
   jobSelector: '.profile__job'
 });
-const popupProfile = new PopupWithForm('.profile-popup', (data) => {
-  userInfo.setUserInfo(data);
+
+// Создаем инстанс попапа профиля
+const popupProfile = new PopupWithForm('.profile-popup', (userData) => {
+  userInfo.setUserInfo(userData);
   popupProfile.close();
 });
+
+// Создаем инстанс попапа добавления новой карточки
 const popupAddCard = new PopupWithForm('.add-mesto-popup', () => {
-  const newCard = new Section({
-    items: [{
-      name: cardAddName.value,
-      link: cardAddLink.value
-    }],
-    renderer: (item) => {
-      cardsSection.addItem(createCard(item));
-    }
-  }, '.elements')
-  newCard.renderFinal();
+  cardsSection.addItem(createCard({
+    name: cardAddName.value,
+    link: cardAddLink.value
+  }));
   popupAddCard.close();
 });
+
+// Создаем инстанс попапа просмотра карточки
 const popupZoomCard = new PopupWithImage('.view-mesto-popup');
 
 // Вешаем лисенеры на все виды попапов
@@ -48,18 +74,6 @@ function fillProfileInfoForm() {
   profilePopupJob.value = userData.job;
 }
 
-// Создаем новую карточку
-const createCard = (item) => {
-  const cardElement = new Card(item, '.template', openCardFullScreen);
-  const card = cardElement.generateCard();
-  return card;
-}
-
-// Прокидываем хендлинг попапа просмотра карточки в класс создания карточки
-const openCardFullScreen = (name, link) => {
-  popupZoomCard.open(name, link);
-}
-
 // Открываем попап профиля, перезаполняем форму и очищаем зависшие ошибки валидации
 const handleProfilePopupOpening = () => {
   profilePopupFormValidator.resetValidation();
@@ -67,24 +81,18 @@ const handleProfilePopupOpening = () => {
   fillProfileInfoForm();
 }
 
-// Рендерим начальные карточки
-const cardsSection = new Section({
-  items: initialCards,
-  renderer: (item) => {
-    cardsSection.addItem(createCard(item));
-  }
-}, '.elements')
-cardsSection.renderFinal();
+// Открываем попап создания карточки, ресетаем форму и очищаем зависшие ошибки валидации
+const handleAddCardPopupOpening = () => {
+  cardFormValidator.resetValidation();
+  cardAddForm.reset();
+  popupAddCard.open();
+}
 
 // Вешаем лисенер на открывание попапа профиля
 buttonEditProfile.addEventListener('click', handleProfilePopupOpening);
 
 // Открываем попап создания новой карточки и очищаем зависшие ошибки валидации
-cardAddButton.addEventListener('click', () => {
-  cardFormValidator.resetValidation();
-  cardAddForm.reset();
-  popupAddCard.open();
-});
+cardAddButton.addEventListener('click', handleAddCardPopupOpening);
 
 // Запускаем валидации
 profilePopupFormValidator.enableValidation();

@@ -9,8 +9,8 @@ class PopupWithImage extends Popup {
 
   open(name, link) {
     super.open();
-    this._cardImageView.setAttribute('src', link);
-    this._cardImageView.setAttribute('alt', name);
+    this._cardImageView.src = link;
+    this._cardImageView.alt = name;
     this._cardNameView.textContent = name;
   }
 }

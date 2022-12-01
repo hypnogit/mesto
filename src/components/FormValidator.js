@@ -57,7 +57,7 @@ class FormValidator {
 
   // Переключаем состояния кнопки сабмита
   _toggleButtonState() {
-    if (this._hasInvalidInput(this._inputList)) {
+    if (this._hasInvalidInput()) {
       this._buttonElement.classList.add(this._conf.inactiveButtonClass)
       this._buttonElement.disabled = true;
     }
