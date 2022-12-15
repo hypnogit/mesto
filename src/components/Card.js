@@ -13,7 +13,7 @@ class Card {
   }
 
   _getTemplate() {
-    const cardElement = document.querySelector(this._template).content.cloneNode(true);
+    const cardElement = document.querySelector(this._template).content.querySelector('.element').cloneNode(true);
     return cardElement;
   }
 
@@ -55,12 +55,6 @@ class Card {
   _likeToggleOffHandler() {
     this._cardLikeButton = this._card.querySelector('.element__like');
     this._cardLikeButton.classList.remove('element__like_active');
-  }
-
-  _bindImageClickHandler() {
-    this._cardImage.addEventListener('click', () => {
-      this._handleImageClick(this._name, this._image);
-    })
   }
 
   generateCard() {

@@ -33,9 +33,11 @@ const createCard = (cardData) => {
   const card = new Card({
     data: cardData,
     userId,
+    // Прокидываем хендлер зума карточки
     handleCardClick: () => {
       openCardFullScreen(cardData.name, cardData.link)
     },
+    // Прокидываем хендлер лайков
     handleLikeClick: (id) => {
       if (card.isLiked()) {
         api.unlikeCard(id)
@@ -56,6 +58,7 @@ const createCard = (cardData) => {
           });
       }
     },
+    // Прокидываем хендлер удаления карточки
     handleDeleteIconClick: (id) => {
       popupDeleteCard.open();
       popupDeleteCard.setHandleConfirmation(() => {
