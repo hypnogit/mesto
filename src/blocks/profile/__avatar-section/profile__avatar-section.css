@@ -1,0 +1,17 @@
+.profile__avatar-section {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-right: 30px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 690px) {
+  .profile__avatar-section {
+    margin: 0 0 26px 0;
+  }
+}

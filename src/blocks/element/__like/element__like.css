@@ -1,7 +1,8 @@
 .element__like {
   width: 22px;
   height: 19px;
-  margin-right: 20px;
+  margin: 0 20px 3px 0;
+  padding: 0;
   border: 0;
   background-color: rgba(0, 0, 0, 0);
   background-image: url('../../../images/nolike.svg');

@@ -14,11 +14,14 @@
 
     <main class="content">
       <section class="profile">
-        <img src="<%=require('./images/avatar.png')%>" alt="Аватар" class="profile__avatar">
+        <div class="profile__avatar-section">
+          <div class="profile__avatar-overlay"></div>
+          <button aria-label="Кнопка редактирования аватара" type="button" class="profile__edit-avatar-button"></button>
+        </div>
         <div class="profile__info">
-          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <h1 class="profile__name"></h1>
           <button aria-label="Кнопка редактирования информации профиля" type="button" class="profile__edit-info"></button>
-          <p class="profile__job">Исследователь рек</p>
+          <p class="profile__job"></p>
         </div>
         <button aria-label="Кнопка добавления новой карточки" type="button" class="profile__add-element"></button>
       </section>
@@ -39,8 +42,8 @@
           <h2 class="profile-popup__title">Редактировать профиль</h2>
           <input required id="name" placeholder="Имя" name="profile-popup__input_name" type="text" class="profile-popup__input profile-popup__input_type_name form__input" minlength="2" maxlength="40">
           <span class="profile-popup__input-error" id="name-error"></span>
-          <input required id="job" placeholder="Профессия" name="profile-popup__input_job" type="text" class="profile-popup__input profile-popup__input_type_job form__input" minlength="2" maxlength="200">
-          <span class="profile-popup__input-error" id="job-error"></span>
+          <input required id="about" placeholder="Профессия" name="profile-popup__input_job" type="text" class="profile-popup__input profile-popup__input_type_job form__input" minlength="2" maxlength="200">
+          <span class="profile-popup__input-error" id="about-error"></span>
           <button type="submit" class="profile-popup__submit submit">Сохранить</button>
         </form>
       </div>
@@ -68,13 +71,38 @@
       </div>
     </div>
 
+    <div class="deletion-confirm-popup popup">
+      <div class="deletion-confirm-popup__container">
+        <button aria-label="Кнопка закрытия попапа" type="button" class="deletion-confirm-popup__close popup__close"></button>
+        <form name="deletion-confirm-popup__content" class="deletion-confirm-popup__content form" novalidate>
+          <h2 class="deletion-confirm-popup__title">Вы уверены?</h2>
+          <button type="submit" class="deletion-confirm-popup__submit submit">Да</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="update-avatar-popup popup">
+      <div class="update-avatar-popup__container">
+        <button aria-label="Кнопка закрытия попапа" type="button" class="update-avatar-popup__close popup__close"></button>
+        <form name="update-avatar-popup__content" class="update-avatar-popup__content form" novalidate>
+          <h2 class="update-avatar-popup__title">Обновить аватар</h2>
+          <input required id="avatar" placeholder="Ссылка на аватар" name="update-avatar-popup__input" type="url" class="update-avatar-popup__input form__input">
+          <span class="update-avatar-popup__input-error" id="avatar-error"></span>
+          <button type="submit" class="update-avatar-popup__submit submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
+
     <template class="template">
       <div class="element">
         <img src="<%=require('./images/avatar.png')%>" alt="" class="element__image">
         <button aria-label="Кнопка удаления карточки" type="button" class="element__remove"></button>
         <div class="element__details">
           <h2 class="element__name"></h2>
-          <button aria-label="Кнопка лайка карточки" type="button" class="element__like"></button>
+          <div class="element__like-section">
+            <button aria-label="Кнопка лайка карточки" type="button" class="element__like"></button>
+            <div class="element__like-count"></div>
+          </div>
         </div>
       </div>
     </template>

@@ -1,0 +1,18 @@
+.update-avatar-popup__title {
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  color: #000000;
+  margin: 0 0 54px 0;
+  padding: 0;
+}
+
+@media screen and (max-width: 550px) {
+  .update-avatar-popup__title {
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 30px;
+  }
+}
