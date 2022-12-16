@@ -13,10 +13,10 @@ class UserInfo {
     return this._userData;
   }
 
-  setUserInfo(userData) {
-    this._name.textContent = userData.name;
-    this._about.textContent = userData.about;
-    this._avatar.style.backgroundImage = `url(${userData.avatar})`;
+  setUserInfo( { name, about, avatar, _id } ) {
+    this._name.textContent = name;
+    this._about.textContent = about;
+    this._avatar.style.backgroundImage = `url(${avatar})`;
   }
 }
 

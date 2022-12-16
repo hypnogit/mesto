@@ -20,7 +20,7 @@ class Popup {
     this._closeButton.addEventListener('click', () => {
       this.close();
     });
-    this._popup.addEventListener('click', this._handleOverlayClick);
+    this._popup.addEventListener('mousedown', this._handleOverlayClick);
   }
 
   _handleEscClose(evt) {

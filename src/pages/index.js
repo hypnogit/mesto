@@ -7,8 +7,7 @@ import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithConfirmation } from "../components/PopupWithConfirmation.js";
 import { UserInfo } from "../components/UserInfo.js";
 import { Api } from "../components/Api.js";
-import { buttonEditProfile, profilePopupName, profilePopupJob, cardAddButton, cardAddForm,
-  cardAddName, cardAddLink, apiConfig, updateAvatarForm, updateAvatarButton } from "../utils/constants.js";
+import { buttonEditProfile, profilePopupName, profilePopupJob, cardAddButton, cardAddForm, apiConfig, updateAvatarForm, updateAvatarButton } from "../utils/constants.js";
 
 
 import './index.css';
@@ -76,28 +75,6 @@ const createCard = (cardData) => {
   return card.generateCard();
 };
 
-let userId = '';
-
-// Собираем инфу для начальной загрузки страницы
-api.getInitialInfo()
-  .then(initialData => {
-    const initialCardList = initialData[0];
-    initialCardList.reverse();
-    const initialUserInfo = initialData[1];
-    userId = initialUserInfo._id;
-    cardsSection.renderFinal(initialCardList);
-    userInfo.setUserInfo(initialUserInfo);
-  })
-
-// Создаем инстанс валидатора попапа профиля
-const profilePopupFormValidator = new FormValidator(validationConfig, '.profile-popup__content');
-
-// Создаем инстанс валидатора попапа создания новой карточки
-const cardFormValidator = new FormValidator(validationConfig, '.add-mesto-popup__content');
-
-// Создаем инстанс валидатора попапа обновления аватара
-const updatePopupValidator = new FormValidator(validationConfig, '.update-avatar-popup__content');
-
 // Создаем инстанс хендлера инфы о пользователе
 const userInfo = new UserInfo({
   nameSelector: '.profile__name',
@@ -105,25 +82,53 @@ const userInfo = new UserInfo({
   avatarSelector: '.profile__edit-avatar-button'
 });
 
+let userId = '';
+
+// Собираем инфу для начальной загрузки страницы
+api.getInitialInfo()
+  .then(([cards, userData]) => {
+    const initialCardList = cards;
+    initialCardList.reverse();
+    const initialUserInfo = userData;
+    userId = initialUserInfo._id;
+    cardsSection.renderItems(initialCardList);
+    userInfo.setUserInfo(initialUserInfo);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+
+// Создаем инстансы всех валидаторов и включаем валидации
+const formValidators = {};
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector))
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(config, formElement)
+    const formName = formElement.getAttribute('name')
+    formValidators[formName] = validator;
+    validator.enableValidation();
+  })
+}
+ enableValidation(validationConfig);
+
 // Создаем инстанс попапа профиля
 const popupProfile = new PopupWithForm('.profile-popup', (userData) => {
   popupProfile.renderLoadingText(true);
   api.editUserInfo(userData.name, userData.about)
     .then(updatedUserInfo => {
         userInfo.setUserInfo(updatedUserInfo);
-        popupProfile.renderLoadingText(false)
         popupProfile.close();
     })
     .catch((err) => {
       console.log(err);
     })
+    .finally(() => popupProfile.renderLoadingText(false))
 });
 
 // Создаем инстанс попапа добавления новой карточки
 const popupAddCard = new PopupWithForm('.add-mesto-popup', () => {
-  popupAddCard.renderLoadingText(true);
   handleAddCardPopupSubmit();
-  popupAddCard.renderLoadingText(false);
 });
 
 // Создаем инстанс попапа подтверждения удаления карточки
@@ -135,12 +140,12 @@ const popupUpdateAvatar = new PopupWithForm('.update-avatar-popup', (src) => {
   api.editAvatar(src.avatar)
     .then(updatedUserData => {
       userInfo.setUserInfo(updatedUserData);
+      popupUpdateAvatar.close();
     })
     .catch((err) => {
       console.log(err);
     })
     .finally(() => popupUpdateAvatar.renderLoadingText(false))
-  popupUpdateAvatar.close();
 });
 
 // Создаем инстанс попапа просмотра карточки
@@ -155,14 +160,17 @@ popupUpdateAvatar.setEventListeners();
 
 // Хендлим сабмит в попапе добавления карточки
 const handleAddCardPopupSubmit = () => {
-  api.addNewCard(cardAddName.value, cardAddLink.value)
+  popupAddCard.renderLoadingText(true);
+  const cardData = popupAddCard.getInputValues()
+  api.addNewCard(cardData.name, cardData.link)
     .then(newCardData => {
         cardsSection.addItem(createCard(newCardData));
         popupAddCard.close();
     })
     .catch((err) => {
       console.log(err);
-    });
+    })
+    .finally(() => popupAddCard.renderLoadingText(false))
 }
 
 // Заполняем форму профиля
@@ -174,22 +182,20 @@ function fillProfileInfoForm() {
 
 // Открываем попап профиля, перезаполняем форму и очищаем зависшие ошибки валидации
 const handleProfilePopupOpening = () => {
-  profilePopupFormValidator.resetValidation();
+  formValidators['profile-popup__content'].resetValidation();
   popupProfile.open();
   fillProfileInfoForm();
 }
 
 // Открываем попап создания карточки, ресетаем форму и очищаем зависшие ошибки валидации
 const handleAddCardPopupOpening = () => {
-  cardFormValidator.resetValidation();
-  cardAddForm.reset();
+  formValidators['add-mesto-popup__content'].resetValidation();
   popupAddCard.open();
 }
 
 // Открываем попап обновления аватара, ресетаем форму и очищаем зависшие ошибки валидации
 const handleUpdateAvatarPopupOpening = () => {
-  updatePopupValidator.resetValidation();
-  updateAvatarForm.reset();
+  formValidators['update-avatar-popup__content'].resetValidation();
   popupUpdateAvatar.open();
 }
 
@@ -201,8 +207,3 @@ cardAddButton.addEventListener('click', handleAddCardPopupOpening);
 
 // Открываем попап обновления аватара и очищаем зависшие ошибки валидации
 updateAvatarButton.addEventListener('click', handleUpdateAvatarPopupOpening);
-
-// Запускаем валидации
-profilePopupFormValidator.enableValidation();
-cardFormValidator.enableValidation();
-updatePopupValidator.enableValidation();

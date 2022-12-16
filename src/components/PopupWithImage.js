@@ -3,8 +3,8 @@ import { Popup } from "./Popup.js";
 class PopupWithImage extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
-    this._cardImageView = document.querySelector('.view-mesto-popup__image');
-    this._cardNameView = document.querySelector('.view-mesto-popup__name');
+    this._cardImageView = this._popup.querySelector('.view-mesto-popup__image');
+    this._cardNameView = this._popup.querySelector('.view-mesto-popup__name');
   }
 
   open(name, link) {

@@ -1,8 +1,7 @@
 class FormValidator {
   constructor(conf, formSelector) {
     this._conf = conf;
-    this._formSelector = formSelector;
-    this._currentForm = document.querySelector(this._formSelector);
+    this._currentForm = formSelector;
     this._buttonElement = this._currentForm.querySelector(this._conf.submitButtonSelector);
     this._inputList = Array.from(this._currentForm.querySelectorAll(this._conf.inputSelector));
   }
