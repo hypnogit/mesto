@@ -162,7 +162,7 @@ popupUpdateAvatar.setEventListeners();
 const handleAddCardPopupSubmit = () => {
   popupAddCard.renderLoadingText(true);
   const cardData = popupAddCard.getInputValues()
-  api.addNewCard(cardData.name, cardData.link)
+  api.addNewCard(cardData.mesto, cardData.link)
     .then(newCardData => {
         cardsSection.addItem(createCard(newCardData));
         popupAddCard.close();
